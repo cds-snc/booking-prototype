@@ -9,7 +9,7 @@ const helmet = require('helmet')
 const path = require('path')
 const cookieSession = require('cookie-session')
 const cookieSessionConfig = require('./config/cookieSession.config')
-const { hasData, contextMiddleware } = require('./utils')
+const { hasData } = require('./utils')
 const { addNunjucksFilters } = require('./filters')
 const csp = require('./config/csp.config')
 const csrf = require('csurf')
@@ -25,7 +25,7 @@ const app = express()
 
 // general app configuration.
 app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser(process.env.app_session_secret))
 app.use(require('./config/i18n.config').init)
 
@@ -69,9 +69,6 @@ app.locals.hasData = hasData
 // set default views path
 app.locals.basedir = path.join(__dirname, './views')
 app.set('views', [path.join(__dirname, './views')])
-
-// add in helpers for scoped data contexts (used in the repeater)
-app.use(contextMiddleware)
 
 app.routes = configRoutes(app, routes, locales)
 

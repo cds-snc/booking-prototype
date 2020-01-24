@@ -1,12 +1,18 @@
-const { matchedData } = require('express-validator')
+const getSessionData = req => {
+  if (!req.session) return {}
+  return typeof req.session.formdata === 'object' ? req.session.formdata : {}
+}
 
-const saveToSession = (req, res, next) => {
-  // matchedData() comes from express-validator, which
-  // only includes things mentioned in the schema.
-  Object.assign(req.session, matchedData(req))
-  next()
+const saveSessionData = req => {
+  // copy all posted parameters
+  const body = Object.assign({}, req.body)
+  delete body.redirect
+  delete body._csrf
+
+  req.session.formdata = { ...req.session.formdata, ...body }
 }
 
 module.exports = {
-  saveToSession,
+  getSessionData,
+  saveSessionData,
 }

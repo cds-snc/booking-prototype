@@ -1,4 +1,5 @@
-const { validationResult } = require('express-validator')
+const { validationResult, checkSchema } = require('express-validator')
+const { getSessionData, saveSessionData } = require('./session.helpers')
 
 /*
   original format is an array of error objects: https://express-validator.github.io/docs/validation-result-api.html
@@ -52,25 +53,63 @@ const isValidDate = dateString => {
  *
  * @param string template The template string to render if errors are found (should match the one used for the GET request)
  */
-const checkErrors = (req, res, next) => {
-  // check to see if the requests should respond with JSON
-  if (req.body.json) {
-    return checkErrorsJSON(req, res, next)
-  }
-
-  const errors = validationResult(req)
-
-  if (!errors.isEmpty()) {
-    req.session.errorState = {
-      errors: errorArray2ErrorObject(errors),
-      firstError: errors.errors[0].param,
+const checkErrors = template => {
+  return (req, res, next) => {
+    // check to see if the requests should respond with JSON
+    if (req.body.json) {
+      return checkErrorsJSON(req, res, next)
     }
 
-    return res.redirect('back')
+    const errors = validationResult(req)
+
+    saveSessionData(req)
+
+    // flash error messages and redirect back on error
+    if (!errors.isEmpty()) {
+      req.session.flashmessage = errorArray2ErrorObject(errors)
+      return res.redirect('back')
+    }
+
+    return next()
+  }
+}
+
+/**
+ * @param {Object} req express request obj
+ */
+
+const middlewareArr = options => {
+  return [checkSchema(options.schema), checkErrors(options.name)]
+}
+
+const validateRouteData = async (req, schema) => {
+  const data = getSessionData(req)
+  const validateReq = {}
+  validateReq.body = data
+  validateReq.body.json = true
+
+  // setup middleWare to call
+  const middleWare = middlewareArr({ schema })
+
+  const res = {
+    json(payload) {
+      return payload
+    },
   }
 
-  req.session.errorState = null
-  return next()
+  // run checkSchema()
+  await middleWare[0][0](validateReq, res, () => { })
+
+  // run checkErrors()
+  middleWare[1](validateReq, res, () => { })
+
+  const errors = checkErrorsJSON(validateReq, res, () => { })
+
+  if (!isEmptyObject(errors)) {
+    return { status: false, errors: errors }
+  } else {
+    return { status: true }
+  }
 }
 
 const checkErrorsJSON = (req, res, next) => {
@@ -113,6 +152,7 @@ const isEmptyObject = obj => {
 
 module.exports = {
   errorArray2ErrorObject,
+  validateRouteData,
   isValidDate,
   checkErrors,
   checkErrorsJSON,

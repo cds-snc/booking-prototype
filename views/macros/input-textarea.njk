@@ -3,42 +3,27 @@
   - `label`: text for the label
   - `attributes`: object of optional attributes: id, class, hint, divClasses, autocomplete
 #}
-{% macro textArea(relname, label,
-                  required=false,
-                  hint=false,
-                  class=false) %}
-    {% set val = getData(relname) %}
-    {% set error = getError(relname) %}
-    {% set name = getName(relname) %}
+{% if errors %}
+    {% set firstError = errors[errors.keys()[0]] %}
+{% endif %}
 
-    <div class="{{ 'has-error' if error }} cds-form-control">
+{% macro textArea(name, label, attributes) %}
+    <div class="{{ 'has-error' if errors and errors[name] }} {{ attributes.divClasses }}">
         <label for="{{ name }}" id="{{ name }}__label">
-        {% if required %}
-            <span aria-hidden="true" class="required">*</span>
+        {% if attributes.required %}
+                <span aria-hidden="true" class="required">*</span>
         {% endif %}
         {{ __(label) }}
-        {% if required %}
+        {% if attributes.required %}
             <span class="required">{{ __("required")}}</span>
         {% endif %}
         </label>
-        {% if hint %}
-            <span class="form-message">{{ __(hint) }}</span>
+        {% if attributes.hint %}
+            <span class="form-message">{{ __(attributes.hint) }}</span>
         {% endif %}
-        {% if error %}
-            {{ validationMessage(error, name) }}
+        {% if errors and errors[name] %}
+            {{ validationMessage(errors[name].msg, name) }}
         {% endif %}
-        <textarea
-            id="{{ name }}"
-            name="{{ name }}"
-            {% if error %}
-                aria-describedby="{{ name }}-error"
-                aria-invalid="true"
-            {% endif %}
-            {% if isFirstError(relname) %}
-                autofocus="true"
-            {% endif %}
-        >
-            {{- val -}}
-        </textarea>
+        <textarea class="{{ attributes.class if attributes.class else "w-3-4" }}" id="{{ attributes.id if attributes.id else name }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError.param === name %} autofocus="true" {% endif %} name="{{ name }}">{{ data[name] }}</textarea>
     </div>
 {% endmacro %}
