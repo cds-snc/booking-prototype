@@ -51,5 +51,8 @@
   "caught this error": "caught this error",
   "Cannot read property 'match' of undefined": "Cannot read property 'match' of undefined",
   "Government of Canada": "Government of Canada",
-  "required": "required"
+  "required": "required",
+  "book.title": "book.title",
+  "book.intro": "book.intro",
+  "form.firstname.desc": "form.firstname.desc"
 }
