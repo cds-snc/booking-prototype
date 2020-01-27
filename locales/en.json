@@ -51,5 +51,17 @@
   "caught this error": "caught this error",
   "Cannot read property 'match' of undefined": "Cannot read property 'match' of undefined",
   "Government of Canada": "Government of Canada",
-  "required": "required"
+  "required": "required",
+  "form.firstname.desc": "form.firstname.desc",
+  "form.password.desc": "form.password.desc",
+  "Username": "Username",
+  "Password": "Password",
+  "Sign in": "Sign in",
+  "signup.intro": "signup.intro",
+  "form.email.label": "Email address",
+  "form.email.hint": "Must be a federal government email address",
+  "form.password.label": "Password",
+  "form.password.hint": "At least 8 characters",
+  "form.fullname.label": "Full name",
+  "errors.password.length": "Password should be more than 8 characters"
 }

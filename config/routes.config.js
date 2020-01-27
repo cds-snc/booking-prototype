@@ -5,7 +5,7 @@ const routes = [
   { name: 'confirmation', path: '/confirmation' },
   { name: 'book', path: '/book' },
   { name: 'login', path: '/login' },
-  { name: 'signup', path: '/signup' },
+  { name: 'register', path: '/register' },
   { name: 'admin', path: '/admin' },
 ]
 
