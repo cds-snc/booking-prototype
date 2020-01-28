@@ -5,6 +5,7 @@ const scriptSrc = [
   "'unsafe-inline'",
   'cdnjs.cloudflare.com',
   '*.herokuapp.com',
+  'unpkg.com',
 ]
 
 let upgradeInsecureRequests = true
@@ -20,6 +21,6 @@ module.exports = {
   baseUri: ["'none'"],
   fontSrc: ["'self'", 'https://fonts.gstatic.com'],
   imgSrc: ["'self'", 'data:'],
-  styleSrc: ["'self'", 'https://fonts.googleapis.com'],
+  styleSrc: ["'self'", 'https://fonts.googleapis.com', 'unpkg.com'],
   upgradeInsecureRequests,
 }
