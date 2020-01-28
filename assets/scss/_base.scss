@@ -17,7 +17,7 @@ iframe,
 
 body {
   margin: 0;
-  font-size: 1.05em;
+  font-size: 2.05em;
   font-family: "Noto Sans", sans-serif;
   line-height: 1.65;
 
@@ -34,6 +34,7 @@ p,
 .multiple-choice__item p,
 ol,
 ul {
+  font-size: 1.8em;
   margin-top: 0;
   margin-bottom: $space-xs;
 

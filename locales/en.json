@@ -54,5 +54,6 @@
   "required": "required",
   "book.title": "book.title",
   "book.intro": "book.intro",
-  "form.firstname.desc": "form.firstname.desc"
+  "form.firstname.desc": "form.firstname.desc",
+  "errors.firstname.length": "errors.firstname.length"
 }
