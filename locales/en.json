@@ -64,5 +64,8 @@
   "form.password.hint": "At least 8 characters",
   "form.fullname.label": "Full name",
   "errors.password.length": "Password should be more than 8 characters",
-  "Email address": "Email address"
+  "Email address": "Email address",
+  "admin.title": "admin.title",
+  "admin.intro": "admin.intro",
+  "errors.firstname.length": "errors.firstname.length"
 }
