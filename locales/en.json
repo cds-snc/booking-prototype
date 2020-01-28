@@ -52,8 +52,6 @@
   "Cannot read property 'match' of undefined": "Cannot read property 'match' of undefined",
   "Government of Canada": "Government of Canada",
   "required": "required",
-  "book.title": "book.title",
-  "book.intro": "book.intro",
   "form.firstname.desc": "form.firstname.desc",
   "form.password.desc": "form.password.desc",
   "Username": "Username",
@@ -69,5 +67,7 @@
   "Email address": "Email address",
   "admin.title": "admin.title",
   "admin.intro": "admin.intro",
-  "errors.firstname.length": "errors.firstname.length"
+  "errors.firstname.length": "errors.firstname.length",
+  "book.title": "book.title",
+  "book.intro": "book.intro"
 }
