@@ -1,0 +1,19 @@
+{% extends "base.njk" %}
+
+{% block content %}
+
+    <h1>Create an account</h1>
+
+    <div>
+
+        <form method="post">
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+            
+            {{ textInput('form.fullname', 'form.fullname.label') }}
+            {{ textInput('form.email', 'form.email.label', {hint: "form.email.hint"}) }}
+            {{ textInput('form.password', 'form.password.label', {hint: "form.password.hint"}) }}
+            {{ formButtons() }}
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,9 +1,9 @@
 /* istanbul ignore file */
 
 const Schema = {
-  firstname: {
+  email: {
     isLength: {
-      errorMessage: 'errors.firstname.length',
+      errorMessage: 'errors.email.length',
       options: { min: 3, max: 200 },
     },
   },

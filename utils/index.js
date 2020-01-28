@@ -1,4 +1,5 @@
 const routeHelpers = require('./route.helpers.js')
+const authHelpers = require('./auth.helpers.js')
 const dataHelpers = require('./data.helpers.js')
 const sessionHelpers = require('./session.helpers.js')
 const urlHelpers = require('./url.helpers.js')
@@ -9,6 +10,7 @@ const loadHelpers = require('./load.helpers')
 
 module.exports = {
   ...routeHelpers,
+  ...authHelpers,
   ...viewHelpers,
   ...sessionHelpers,
   ...urlHelpers,

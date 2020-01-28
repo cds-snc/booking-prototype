@@ -4,8 +4,8 @@ const routes = [
   { name: 'personal', path: { en: '/personal', fr: '/personnel' } },
   { name: 'confirmation', path: '/confirmation' },
   { name: 'book', path: '/book' },
-  { name: 'login', path: '/login' },
-  { name: 'signup', path: '/signup' },
+  { name: 'sign-in', path: '/sign-in' },
+  { name: 'register', path: '/register' },
   { name: 'admin', path: '/admin' },
 ]
 
