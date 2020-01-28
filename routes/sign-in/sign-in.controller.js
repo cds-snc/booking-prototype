@@ -8,8 +8,10 @@ const passport = require("passport")
 
 
 const login = (req, res) => {
+  console.log("signin 1")
   passport.authenticate('local', { failureRedirect: '/sign-in' })
-  res.redirect('/');
+  console.log("signin 2")
+  res.redirect('admin');
 }
 module.exports = (app, route) => {
   const name = route.name

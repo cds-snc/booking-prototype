@@ -13,12 +13,24 @@ const initAuth = (passport) => {
     // });
     passport.use(new LocalStrategy(
         (username, password, done) => {
-          allUsers.findOne({ username: username }, (err, user) => {
-            if (err) { return done(err); }
-            if (!user) { return done(null, false); }
-            if (user.password !== password) { return done(null, false); }
-            return done(null, user);
-          });
+          console.log("hi")
+          allUsers.forEach(x => {
+            console.log("checking user", x.username)
+            // if (err) { return done(err); }
+            if (x.username === username && x.password === password) {
+              console.log("success")
+              return done(null, false)
+            } 
+          })
+          return done(null, false);
+
+          // allUsers.findOne({ username: username }, (err, user) => {
+            // console.log("checking user", user)
+            // if (err) { return done(err); }
+            // if (!user) { return done(null, false); }
+            // if (user.password !== password) { return done(null, false); }
+            // return done(null, user);
+          // });
         },
       ))
 
