@@ -6,6 +6,7 @@ const routes = [
   { name: 'register', path: '/register' },
   { name: 'admin', path: '/admin' },
   { name: 'new-account', path: '/new-account' },
+  { name: 'create-event', path: '/create-event' },
 ]
 
 const locales = ['en', 'fr']

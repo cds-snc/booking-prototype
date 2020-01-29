@@ -1,0 +1,37 @@
+{#
+  - `name`: field name
+  - `label`: text for the label
+  - `attributes`: object of optional attributes: class, hint, divClasses, autocomplete
+#}
+{% if errors %}
+    {% set firstError = errors[errors.keys()[0]] %}
+{% endif %}
+
+{% macro dropdown(name, values, label, attributes) %}
+    <div class="{{ 'has-error' if errors and errors[name] }} {{ attributes.divClasses }}">
+        <label for="{{ name }}" id="{{ name }}__label">
+            {% if attributes.required %}
+                <span aria-hidden="true" class="required">*</span>
+            {% endif %}
+            {{ __(label) }}
+            {% if attributes.required %}
+                <span class="required">{{ __("required")}}</span>
+            {% endif %}
+        </label>
+        {% if attributes.hint %}
+            <span class="form-message">{{ __(attributes.hint) }}</span>
+        {% endif %}
+        {% if errors and errors[name] %}
+            {{ validationMessage(errors[name].msg, name) }}
+        {% endif %}
+
+        <select id="{{ name }}">
+        {% for index, val in values %}
+            <option id="{{ name }}{{ val }}" value="{{ val }}" {% if selected and val in selectedVals %} checked="checked" {% endif %}>
+                {{ val }}
+            </option>
+        {% endfor %}
+        </select>
+
+    </div>
+{% endmacro %}
