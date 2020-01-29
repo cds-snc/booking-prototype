@@ -1,48 +1,32 @@
-const LocalStrategy = require("passport-local").Strategy;
+// const bcrypt = require('bcrypt')
+// bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
+//   // Store hash in your password DB.
+// });
 
 const allUsers = [
-    {username: "bob", password: "bob"},
-    {username: "ted", password: "ted"},
+    {email: "bob", password: "bob"},
+    {email: "ted", password: "ted"},
 ]
-const initAuth = (passport) => {
-    // passport.serializeUser((user, done) => {
-    //     done(null, user);
-    // });
-    // passport.deserializeUser((user, done) => {
-    //     done(null, user);
-    // });
-    passport.use(new LocalStrategy(
-        (username, password, done) => {
-          allUsers.findOne({ username: username }, (err, user) => {
-            if (err) { return done(err); }
-            if (!user) { return done(null, false); }
-            if (user.password !== password) { return done(null, false); }
-            return done(null, user);
-          });
-        },
-      ))
 
-    // passport.use(new GoogleStrategy({
-    //         clientID: process.env.GOOGLE_CLIENT_ID,
-    //         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    //         callbackURL: "/auth/google/callback",
-    //     },
-    //     (token, refreshToken, profile, done) => {
-    //         return done(null, {
-    //             profile: profile,
-    //             token: token,
-    //         });
-    //     }));
+const login = (req, res, next) => {
+  const { email, password } = req.session.formdata
+  allUsers.forEach(x => {
+    if (email === x.email && password === x.password) {
+      req.session.token = true
+      req.session.profile = { email: email }
+    }
+  })
+  next()
 };
 
 const checkAuth = (req, res, next) => {
     if (!req.session.token) {
-        return res.redirect(res.locals.route.get("login").url(req.locale))
+        return res.redirect(res.locals.route.get("sign-in").url(req.locale))
     }
     next()
 }
 
 module.exports = {
-    initAuth: initAuth,
-    checkAuth: checkAuth,
+  login: login,
+  checkAuth: checkAuth,
 }

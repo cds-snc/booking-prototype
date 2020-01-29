@@ -14,9 +14,6 @@ const { addNunjucksFilters } = require('./filters')
 const csp = require('./config/csp.config')
 const csrf = require('csurf')
 
-const passport = require('passport')
-const { initAuth } = require('./utils')
-
 // check to see if we have a custom configRoutes function
 let { configRoutes, routes, locales } = require('./config/routes.config')
 
@@ -25,9 +22,6 @@ if (!locales) locales = ['en', 'fr']
 
 // initialize application.
 const app = express()
-
-initAuth(passport)
-app.use(passport.initialize())
 
 // general app configuration.
 app.use(express.json())
@@ -68,34 +62,11 @@ app.use(helmet.contentSecurityPolicy({ directives: csp }))
 // gzip response body compression.
 app.use(compression())
 
-app.get('/logout', (req, res) => {
+app.get('/sign-out', (req, res) => {
   req.session.token = null
   req.session.profile = null
   res.redirect('/')
 });
-
-// app.get(
-//   "/auth/google",
-//   passport.authenticate("local-xgoogle", {
-//     scope: ["profile"],
-//   }),
-// )
-
-// app.get(
-//   "/auth/google/callback",
-//   passport.authenticate("local-xgoogle", { failureRedirect: "/auth/google" }),
-//   (req, res) => {
-//     // Successful authentication, redirect home.
-//     req.session.profile = req.user.profile;
-//     req.session.token = req.user.token;
-//     req.session.save((err) => {
-//       if(err) {
-//         console.log("error!!!!!!!", err)
-//       }
-//       res.redirect("/");
-//     })
-//   },
-// );
 
 // Adding values/functions to app.locals means we can access them in our templates
 app.locals.GITHUB_SHA = process.env.GITHUB_SHA || null
