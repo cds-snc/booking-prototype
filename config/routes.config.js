@@ -1,8 +1,6 @@
 // 1) add your route(s) here ⬇️
 const routes = [
-  { name: 'start', path: { en: '/start', fr: '/debut' } },
   { name: 'personal', path: { en: '/personal', fr: '/personnel' } },
-  { name: 'confirmation', path: '/confirmation' },
   { name: 'book', path: '/book' },
   { name: 'sign-in', path: '/sign-in' },
   { name: 'register', path: '/register' },
