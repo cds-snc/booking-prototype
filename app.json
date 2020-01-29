@@ -1,6 +1,13 @@
 {
   "name": "node-starter",
   "description": "",
+  "env": {
+    "HASURA_ENDPOINT": {
+      "required": true
+    },
+    "HASURA_SECRET": {
+      "required": true
+    },
   "formation": {},
   "addons": [],
   "buildpacks": [
