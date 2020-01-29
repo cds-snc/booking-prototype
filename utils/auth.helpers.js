@@ -14,6 +14,15 @@ const queryEmail = (email) => {
 }`
 }
 
+const addUserMutation = (email, fullname, password) => {
+  return `mutation addUser {
+    __typename
+    insert_users(objects: {email: "${email}", fullname: "${fullname}", password: "${password}"}) {
+      affected_rows
+    }
+  }`
+}
+
 const client = new GraphQLClient(process.env.HASURA_ENDPOINT, {
   headers: {
     "x-hasura-admin-secret": process.env.HASURA_SECRET,
@@ -35,6 +44,15 @@ const login = (req, res, next) => {
   })
 };
 
+const addUser = (req, res, next) => {
+  const { email, password, fullname } = req.session.formdata
+  
+  client.request(addUserMutation(email, fullname, password)).then(data => {
+    console.log(data)
+  })
+  next()
+}
+
 const checkAuth = (req, res, next) => {
     if (!req.session.token) {
         return res.redirect(res.locals.route.get("sign-in").url(req.locale))
@@ -44,5 +62,6 @@ const checkAuth = (req, res, next) => {
 
 module.exports = {
   login: login,
+  addUser: addUser,
   checkAuth: checkAuth,
 }

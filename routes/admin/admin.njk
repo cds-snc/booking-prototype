@@ -10,15 +10,9 @@
 
     <div>
         <p>
-            {{ __('admin.intro') }}
+        This is your admin page!
         </p>
 
-        <form method="post">
-            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-            
-            {{ textInput('form.firstname', 'form.firstname.desc') }}
-            {{ formButtons() }}
-        </form>
     </div>
 
 {% endblock %}
