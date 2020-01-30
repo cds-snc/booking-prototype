@@ -8,6 +8,9 @@
     "HASURA_SECRET": {
       "required": true
     },
+    "SALT_ROUNDS": {
+      "required": true
+    },
   "formation": {},
   "addons": [],
   "buildpacks": [
