@@ -7,12 +7,13 @@
     <div>
         <a href="create-event">Create a new event</a>
     </div>
-    <h2>Your Events</h2>
+    <h2>Your events</h2>
     {% for item in eventData %}
-    {% set link = 'book?id=' + item.event_id %}
-
-    <div>
-        <span>{{item.event_name}}, <i>{{item.event_description}}</i>, <a href={{link}}>{{item.event_name}} booking page</a></span>
-    </div>
+        {% set link = 'book?id=' + item.event_id %}
+        <div>
+            <span>{{item.event_name}}, <i>{{item.event_description}}</i>, <a href={{link}}>{{item.event_name}} booking page</a></span>
+        </div>
     {% endfor %}
+    <h2>Your schedule</h2>
+    
 {% endblock %}

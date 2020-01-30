@@ -1,4 +1,4 @@
-const { routeUtils } = require('./../../utils')
+const { routeUtils, getEventsQuery2, client } = require('./../../utils')
 const { Schema } = require('./schema.js')
 
 module.exports = (app, route) => {
@@ -6,7 +6,17 @@ module.exports = (app, route) => {
 
   route.draw(app)
     .get((req, res) => {
-      res.render(name, routeUtils.getViewData(req, {}))
+      const eventId = +req.query.id
+      console.log("eventId", eventId)
+
+      if (!eventId) {
+        res.render(name, routeUtils.getViewData(req, {}))
+      }
+      client.request(getEventsQuery2(eventId)).then(eventData => {
+        console.log("eventData", eventData)
+
+        res.render(name, routeUtils.getViewData(req, { eventData: eventData.events[0] }))
+      })
     })
     .post(route.applySchema(Schema), route.doRedirect())
 }

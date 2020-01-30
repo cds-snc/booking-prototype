@@ -18,6 +18,15 @@ const getEventsQuery = (userId) => {
     }
   }`
 }
+const getEventsQuery2 = (eventId) => {
+    return `query MyQuery {
+    events(where: {event_id: {_eq: ${eventId}}}) {
+      event_id
+      event_name
+      event_description
+    }
+  }`
+}
   
 
   const client = new GraphQLClient(process.env.HASURA_ENDPOINT, {
@@ -59,4 +68,5 @@ module.exports = {
     addEvent: addEvent,
     client: client,
     getEventsQuery: getEventsQuery,
+    getEventsQuery2: getEventsQuery2,
   }

@@ -2,20 +2,15 @@
 
 {% block content %}
 
-    <h1>{{ __('book.title') }}</h1>
+    <h1>Book an appointment for {{ eventData.event_name }}</h1>
 
     <div>
         <p>
-            {{ __('book.intro') }}
+            {{ eventData.event_description }}
         </p>
-        <div>-------------------</div>
         <div id="app"></div>
-        <div>-------------------</div>
-
         <form method="post">
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-            
-            {{ textInput('form.firstname', 'form.firstname.desc') }}
             {{ formButtons() }}
         </form>
     </div>
