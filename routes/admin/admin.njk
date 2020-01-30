@@ -1,10 +1,6 @@
-{% extends "base.njk" %}
+{% extends "base-logged-in.njk" %}
 
-{% block content %}
-    <div>
-        <div>Logged in as {{ email }} </div>
-        <a href="/sign-out">Sign out</a>
-    </div>
+{% block morecontent %}
 
     <h1>Admin Page</h1>
 

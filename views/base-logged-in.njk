@@ -1,0 +1,10 @@
+{% extends "base.njk" %}
+
+{% block content %}
+    <div>
+        <div>Logged in as <b>{{ email }}</b> </div>
+        <a href="/sign-out">Sign out</a>
+    </div>
+    {% block morecontent %}{% endblock %}
+
+{% endblock %}

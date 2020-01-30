@@ -8,6 +8,7 @@ module.exports = (app, route) => {
     .get(
       checkAuth, 
       (req, res) => {
+        console.log(req.session.profile)
         res.render(name, routeUtils.getViewData(req, {email: req.session.formdata.email}))
       })
     .post(route.applySchema(Schema), route.doRedirect())

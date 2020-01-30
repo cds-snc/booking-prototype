@@ -4,6 +4,7 @@ const { GraphQLClient } = require('graphql-request')
 const queryEmail = (email) => {
   return `{
   users(where: {email: {_eq: "${email}"}}) {
+    user_id
     email
     fullname
     password
@@ -32,7 +33,11 @@ const login = (req, res, next) => {
     data.users.forEach(x => {
       if (email === x.email && bcrypt.compareSync(password, x.password)) {
         req.session.token = true
-        req.session.profile = { email: email }
+        req.session.profile = { 
+          user_id: x.user_id, 
+          fullname: x.fullname,
+          email: x.email,
+        }
       }
     })
     next()
@@ -43,9 +48,8 @@ const addUser = (req, res, next) => {
   const { email, password, fullname } = req.session.formdata
   const hash = bcrypt.hashSync(password, +process.env.SALT_ROUNDS);
   client.request(addUserMutation(email, fullname, hash)).then(data => {
-    console.log(data)
+    next()
   })
-  next()
 }
 
 const checkAuth = (req, res, next) => {
