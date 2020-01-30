@@ -1,7 +1,4 @@
-// const bcrypt = require('bcrypt')
-// bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
-//   // Store hash in your password DB.
-// });
+const bcrypt = require('bcrypt')
 const { GraphQLClient } = require('graphql-request')
 
 const queryEmail = (email) => {
@@ -31,11 +28,9 @@ const client = new GraphQLClient(process.env.HASURA_ENDPOINT, {
 
 const login = (req, res, next) => {
   const { email, password } = req.session.formdata
-  
   client.request(queryEmail(email)).then(data => {
-    console.log(data)
     data.users.forEach(x => {
-      if (email === x.email && password === x.password) {
+      if (email === x.email && bcrypt.compareSync(password, x.password)) {
         req.session.token = true
         req.session.profile = { email: email }
       }
@@ -46,8 +41,8 @@ const login = (req, res, next) => {
 
 const addUser = (req, res, next) => {
   const { email, password, fullname } = req.session.formdata
-  
-  client.request(addUserMutation(email, fullname, password)).then(data => {
+  const hash = bcrypt.hashSync(password, +process.env.SALT_ROUNDS);
+  client.request(addUserMutation(email, fullname, hash)).then(data => {
     console.log(data)
   })
   next()
