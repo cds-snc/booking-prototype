@@ -1,4 +1,4 @@
-const { routeUtils, checkAuth } = require('./../../utils')
+const { routeUtils, checkAuth, getEventsQuery, client } = require('./../../utils')
 const { Schema } = require('./schema.js')
 
 module.exports = (app, route) => {
@@ -8,8 +8,9 @@ module.exports = (app, route) => {
     .get(
       checkAuth, 
       (req, res) => {
-        console.log(req.session.profile)
-        res.render(name, routeUtils.getViewData(req, {email: req.session.formdata.email}))
+        client.request(getEventsQuery(req.session.profile.user_id)).then(eventData => {
+          res.render(name, routeUtils.getViewData(req, {email: req.session.formdata.email, eventData: eventData.events}))
+        })
       })
     .post(route.applySchema(Schema), route.doRedirect())
 }

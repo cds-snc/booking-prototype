@@ -9,6 +9,17 @@ const addEventMutation = (obj) => {
       }`
 }
 
+const getEventsQuery = (userId) => {
+    return `query MyQuery {
+    events(where: {user_id: {_eq: ${userId}}}) {
+      event_id
+      event_name
+      event_description
+    }
+  }`
+}
+  
+
   const client = new GraphQLClient(process.env.HASURA_ENDPOINT, {
     headers: {
       "x-hasura-admin-secret": process.env.HASURA_SECRET,
@@ -38,9 +49,6 @@ const addEventMutation = (obj) => {
         user_id: +req.session.profile.user_id,
     }
 
-    // if(date.event_duration)
-    // console.log("obj", obj)
-
     client.request(addEventMutation(obj)).then(_data => {
     //   console.log(_data)
     })
@@ -49,4 +57,6 @@ const addEventMutation = (obj) => {
 
 module.exports = {
     addEvent: addEvent,
+    client: client,
+    getEventsQuery: getEventsQuery,
   }
