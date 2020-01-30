@@ -4,3 +4,15 @@ CREATE TABLE users (
     email VARCHAR(200),
     password VARCHAR(200)
 );
+
+CREATE TABLE events (
+    event_id SERIAL PRIMARY KEY,
+    event_name VARCHAR(200),
+    event_description VARCHAR(200),
+    event_location VARCHAR(200),
+    duration_minutes SMALLINT,
+    daterange_days SMALLINT,
+    available_days VARCHAR(200),
+    start_hour SMALLINT,
+    end_hour SMALLINT
+);

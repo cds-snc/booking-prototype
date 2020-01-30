@@ -25,9 +25,9 @@
             {{ validationMessage(errors[name].msg, name) }}
         {% endif %}
 
-        <select id="{{ name }}">
+        <select name="{{ name }}" id="{{ name }}">
         {% for index, val in values %}
-            <option id="{{ name }}{{ val }}" value="{{ val }}" {% if selected and val in selectedVals %} checked="checked" {% endif %}>
+            <option id="{{ name }}{{ val }}" value="{{ val }}" {% if attributes.selected and val == attributes.selected %} selected {% endif %}>
                 {{ val }}
             </option>
         {% endfor %}
