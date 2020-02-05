@@ -24,6 +24,12 @@ const getEventsQuery2 = (eventId) => {
       event_id
       event_name
       event_description
+      event_location
+      available_days
+      duration_minutes
+      daterange_days
+      start_hour
+      end_hour
     }
   }`
 }

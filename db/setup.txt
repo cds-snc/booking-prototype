@@ -17,3 +17,9 @@ CREATE TABLE events (
     start_hour SMALLINT,
     end_hour SMALLINT
 );
+
+CREATE TABLE bookings (
+    booking_id SERIAL PRIMARY KEY,
+    event_id INTEGER REFERENCES events(user_id),
+
+}
