@@ -9,3 +9,16 @@
 //       {val: "17:00", label: "5:00 PM"},
 //     ],
 //   }
+
+const fetch = window.fetch
+const origin = window.location.origin
+
+const fetchItems = async () => {
+  const eventId = 3
+  const params = `?eventId=${eventId}`
+  const response = await fetch(`${origin}/en/get-event${params}`)
+  const result = await response.text()
+  console.log(result)
+}
+
+fetchItems()
