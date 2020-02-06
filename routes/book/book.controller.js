@@ -12,6 +12,19 @@ const getBlockedDays = (availableDays) => {
   })
   return blockedDays
 }
+
+
+const scriptStuff =  { 
+  "blockedDays": [1,3,4], 
+  "dateRange": 80, 
+  "availableTimes": [
+  {val: "16:00", label: "4:00 PM"},
+  {val: "17:00", label: "5:00 PM"},
+  ],
+  }
+
+  
+
 module.exports = (app, route) => {
   const name = route.name
 
@@ -27,7 +40,7 @@ module.exports = (app, route) => {
       }
       client.request(getEventsQuery2(eventId)).then(_eventData => {
         const eventData = _eventData.events[0]
-        // console.log("eventData", eventData)
+        console.log("eventData", eventData)
 
         // eventData
         // const blockedDays = getBlockedDays("1,3,4")

@@ -40,8 +40,6 @@
         </div>
     </body>
     {% include "_includes/script.njk" %}
-    <script src="https://unpkg.com/@cdssnc/notification-scheduler@2.0.6/dist/main.bundle.js"></script>
-
     {% block scripts %}
         {% if jsFiles %}
             {% for val in jsFiles %}
@@ -49,4 +47,5 @@
             {% endfor %}
         {% endif %}
     {% endblock %}
+    <script src="https://unpkg.com/@cdssnc/notification-scheduler@2.0.6/dist/main.bundle.js"></script>
 </html>

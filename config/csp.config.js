@@ -6,6 +6,7 @@ const scriptSrc = [
   'cdnjs.cloudflare.com',
   '*.herokuapp.com',
   'unpkg.com',
+  'dreamy-swirles-5330b3.netlify.com',
 ]
 
 let upgradeInsecureRequests = true
@@ -21,6 +22,6 @@ module.exports = {
   baseUri: ["'none'"],
   fontSrc: ["'self'", 'https://fonts.gstatic.com'],
   imgSrc: ["'self'", 'data:'],
-  styleSrc: ["'self'", 'https://fonts.googleapis.com', 'unpkg.com'],
+  styleSrc: ["'self'", 'https://fonts.googleapis.com','unpkg.com', 'dreamy-swirles-5330b3.netlify.com'],
   upgradeInsecureRequests,
 }
