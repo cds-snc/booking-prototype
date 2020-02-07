@@ -2,6 +2,8 @@
 const routes = [
   { name: 'personal', path: { en: '/personal', fr: '/personnel' } },
   { name: 'book', path: '/book' },
+  { name: 'book-2', path: '/book-2' },
+  { name: 'book-confirmation', path: '/book-confirmation' },
   { name: 'sign-in', path: '/sign-in' },
   { name: 'register', path: '/register' },
   { name: 'admin', path: '/admin' },

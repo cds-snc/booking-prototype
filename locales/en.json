@@ -29,11 +29,11 @@
   "form.address": "Address",
   "form.address.desc": "Enter your current address",
   "form.email": "Email address",
-  "form.email.desc": "Enter the email address",
+  "form.email.desc": "Email address",
   "form.expiry": "Expiry date",
   "form.expiry.desc": "eg. 2010-12",
   "form.fullname": "Full name",
-  "form.fullname.desc": "Enter your name as it appears on your passport",
+  "form.fullname.desc": "Full name",
   "form.notify_by": "Notify by",
   "form.notify_by.desc": "You can select as many as you like.",
   "form.send_notifications": "Would you like to receive notifications?",
@@ -92,5 +92,7 @@
   "Thursday": "Thursday",
   "Friday": "Friday",
   "form.start_time.desc": "Start time",
-  "form.end_time.desc": "End time"
+  "form.end_time.desc": "End time",
+  "book-2.title": "book-2.title",
+  "book-2.intro": "book-2.intro"
 }
