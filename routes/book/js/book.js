@@ -2,7 +2,8 @@ const fetch = window.fetch
 const origin = window.location.origin
 
 const fetchItems = async () => {
-  const eventId = 3
+  const urlParams = new URLSearchParams(window.location.search);
+  const eventId = urlParams.get('id');
   const params = `?eventId=${eventId}`
   const response = await fetch(`${origin}/en/get-event${params}`)
   const result = await response.text()

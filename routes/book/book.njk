@@ -2,12 +2,19 @@
 
 {% block content %}
 
-    <h1>Book an appointment for {{ eventData.event_name }}</h1>
+    <h1>Book an appointment</h1>
 
     <div>
-        <p>
-            {{ eventData.event_description }}
-        </p>
+        <h2>{{ eventData.event_name }}</h2>
+        <div>
+            Description: {{ eventData.event_description }}
+        </div>
+        <div>
+            Location: {{ eventData.event_location }}
+        </div>
+        <div>
+            Duration: {{ eventData.duration_minutes }} minutes
+        </div>
         <div id="schedule-send-at"></div>
         <form method="post">
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">

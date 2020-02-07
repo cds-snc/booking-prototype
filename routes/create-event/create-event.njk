@@ -12,7 +12,7 @@
             {{ textInput('event_name', 'form.event_name.desc', { required: true }) }}
             {{ textInput('event_location', 'form.event_location.desc') }}
             {{ textInput('event_description', 'form.event_description.desc') }}
-            {{ radioButtons('event_duration', {'1': '15 minutes', '2': '30 minutes', '3': '45 minutes', '4': '1 hour'}, data.event_duration, 'form.event_duration.desc', errors, { required: true } )}}
+            {{ radioButtons('event_duration', {'1': '15 minutes', '2': '30 minutes', '3': '45 minutes', '4': '60 minutes'}, data.event_duration, 'form.event_duration.desc', errors, { required: true } )}}
             {{ radioButtons('date_range', {'1': '30 days', '2': '60 days', '3': '90 days'}, data.date_range, 'form.date_range.desc', errors, { hint:'form.date_range.hint', required: true } )}}
             {{ checkBoxes('available_days_of_week', {'1':'Monday','2':'Tuesday', '3': 'Wednesday', '4':'Thursday', '5': 'Friday'}, data.available_days_of_week, 'form.available_days_of_week', errors, {hint: 'form.available_days_of_week.desc', required: true}) }}
             {{ dropdown('start_time', {'1': '1:00', '2':'2:00', '3':'3:00', '4':'4:00', '5':'5:00', '6':'6:00', '7':'7:00', '8':'8:00', '9':'9:00', '10':'10:00', '11':'11:00', '12':'12:00', '13':'13:00', '14':'14:00', '15':'15:00', '16':'16:00', '17':'17:00', '18':'18:00', '19':'19:00', '20':'20:00', '21':'21:00', '22':'22:00', '23':'23:00'}, 'form.start_time.desc', { selected: '9:00' }) }}
