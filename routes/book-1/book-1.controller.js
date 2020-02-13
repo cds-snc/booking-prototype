@@ -1,5 +1,9 @@
 const { routeUtils, getEventsQuery2, client, getClientJs } = require('./../../utils')
 
+const doAnotherThing = (req, res, next) => {
+  console.log("req.session", req.session)
+  next()
+}
 module.exports = (app, route) => {
   const name = route.name
 
@@ -17,5 +21,5 @@ module.exports = (app, route) => {
         res.render(name, routeUtils.getViewData(req, { eventData: eventData, jsFiles: js ? [js] : false }))
       })
     })
-    .post(route.applySchema({}), route.doRedirect("book-2"))
+    .post(route.applySchema({}), doAnotherThing, route.doRedirect("book-2"))
 }

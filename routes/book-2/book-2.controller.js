@@ -1,6 +1,12 @@
 const { routeUtils } = require('./../../utils')
 const { Schema } = require('./schema.js')
 
+const saveData = (req, res, next) => {
+  console.log("req.session.formdata", req.session.formdata)
+  // save to db
+
+  next()
+}
 module.exports = (app, route) => {
   const name = route.name
 
@@ -8,5 +14,5 @@ module.exports = (app, route) => {
     .get((req, res) => {
       res.render(name, routeUtils.getViewData(req, {}))
     })
-    .post(route.applySchema({}), route.doRedirect())
+    .post(route.applySchema({}), saveData, route.doRedirect())
 }

@@ -18,6 +18,7 @@
         <div id="schedule-send-at"></div>
         <form method="post">
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+            <input type="hidden" id="hidden-value" name="date-time">
             {{ formButtons() }}
         </form>
     </div>

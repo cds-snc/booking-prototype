@@ -9,7 +9,7 @@
     </div>
     <h2>Your events</h2>
     {% for item in eventData %}
-        {% set link = 'book?id=' + item.event_id %}
+        {% set link = 'book-1?id=' + item.event_id %}
         <div>
             <span>{{item.event_name}}, <i>{{item.event_description}}</i>, <a href={{link}}>{{item.event_name}} booking page</a></span>
         </div>

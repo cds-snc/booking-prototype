@@ -75,6 +75,7 @@ const setSchedulerOptions = (eventData) => {
         updateMessage: "",
         _24hr: "en",
         errors: "",
+        hiddenValueRef: document.getElementById("hidden-value"),
       };
     },
   };
