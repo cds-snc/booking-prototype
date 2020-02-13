@@ -14,7 +14,7 @@ module.exports = (app, route) => {
         fullname: req.session.formdata["form.fullname"],
         email: req.session.formdata["form.email"],
       }
-      res.render(name, routeUtils.getViewData(req, { data: data }))
+      res.render(name, routeUtils.getViewData(req, { data: data, eventData: req.session.eventData }))
     })
     .post(route.applySchema(Schema), route.doRedirect())
 }

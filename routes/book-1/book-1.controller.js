@@ -18,6 +18,7 @@ module.exports = (app, route) => {
       }
       client.request(getEventsQuery2(eventId)).then(_eventData => {
         const eventData = _eventData.events[0]
+        req.session.eventData = eventData
         res.render(name, routeUtils.getViewData(req, { eventData: eventData, jsFiles: js ? [js] : false }))
       })
     })
