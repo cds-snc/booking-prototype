@@ -5,11 +5,11 @@
     <h1>Confirm your booking</h1>
 
     <div>
-        <div>Event Name: {{ eventData.event_name }}</div>
+        <div>Event name: {{ eventData.event_name }}</div>
         <div>Date: {{ data.date }}</div>
-        <div>Time: {{ data.time }}</div>
-        <div>Name: {{ data.fullname }}</div>
-        <div>email: {{ data.email }}</div>
+        <div>Time: {{ data.startTime }} to {{ data.endTime }}</div>
+        <div>Full name: {{ data.fullname }}</div>
+        <div>Email: {{ data.email }}</div>
 
         <form method="post">
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">
