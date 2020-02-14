@@ -1,11 +1,13 @@
-const { routeUtils, client, getBookingsQuery } = require('./../../utils')
+const { routeUtils, checkAuth, client, getBookingsQuery } = require('./../../utils')
 const { Schema } = require('./schema.js')
 
 module.exports = (app, route) => {
   const name = route.name
 
   route.draw(app)
-    .get((req, res) => {
+    .get(
+      checkAuth, 
+      (req, res) => {
       const eventId = +req.query.id
 
       if (!eventId) {
