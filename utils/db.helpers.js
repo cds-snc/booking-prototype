@@ -33,7 +33,16 @@ const getEventsQuery2 = (eventId) => {
     }
   }`
 }
+const addBookingMutation = (obj) => {
+  return `mutation MyMutation3 {
+    __typename
+    insert_bookings(objects: {datetime: "${obj.datetime}", email: "${obj.email}", event_id: ${obj.event_id}, fullname: "${obj.fullname}"}) {
+      affected_rows
+    }
+  }
   
+  `;
+}
 
   const client = new GraphQLClient(process.env.HASURA_ENDPOINT, {
     headers: {
@@ -70,9 +79,24 @@ const getEventsQuery2 = (eventId) => {
     next()
   }
 
+  const addBooking = (req, res, next) => {
+    const obj = {
+      datetime: req.session.formdata["date-time"],
+      email: req.session.formdata["form.email"],
+      event_id: req.session.eventData.event_id,
+      fullname: req.session.formdata["form.fullname"],
+    }
+
+    client.request(addBookingMutation(obj)).then(_data => {
+      console.log(_data)
+    })
+    next()
+  }
+
 module.exports = {
     addEvent: addEvent,
     client: client,
     getEventsQuery: getEventsQuery,
     getEventsQuery2: getEventsQuery2,
+    addBooking: addBooking,
   }

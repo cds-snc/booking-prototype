@@ -20,6 +20,8 @@ CREATE TABLE events (
 
 CREATE TABLE bookings (
     booking_id SERIAL PRIMARY KEY,
-    event_id INTEGER REFERENCES events(user_id),
-
-}
+    event_id INTEGER REFERENCES events(event_id),
+    fullname VARCHAR(200),
+    email VARCHAR(200),
+    datetime TIMESTAMP
+)

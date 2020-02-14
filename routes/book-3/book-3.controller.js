@@ -1,5 +1,4 @@
-const { routeUtils } = require('./../../utils')
-const { Schema } = require('./schema.js')
+const { routeUtils, addBooking } = require('./../../utils')
 
 module.exports = (app, route) => {
   const name = route.name
@@ -16,5 +15,5 @@ module.exports = (app, route) => {
       }
       res.render(name, routeUtils.getViewData(req, { data: data, eventData: req.session.eventData }))
     })
-    .post(route.applySchema(Schema), route.doRedirect())
+    .post(route.applySchema({}), addBooking, route.doRedirect())
 }
