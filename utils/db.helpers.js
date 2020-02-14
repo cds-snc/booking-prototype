@@ -54,6 +54,11 @@ const getBookingsQuery = (eventId) => {
     event_id
     fullname
   }
+  events_by_pk(event_id: ${eventId}) {
+    event_name
+    duration_minutes
+    event_description
+  }
 }`;
 }
 

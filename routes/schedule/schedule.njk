@@ -2,11 +2,11 @@
 
 {% block morecontent %}
     <a href="admin">Admin page</a>
-
-    <h1>Your Schedule</h1>
+    <h1>Your Schedule for event: {{eventData.event_name}}</h1>
+    <div>Duration: {{eventData.duration_minutes}} minutes</div>
     {% for item in bookingsData %}
         <div>
-            <span>{{item.datetime_formatted}}, name: {{item.fullname}}, email: {{item.email}}</span>
+            <span>{{item.datetime_formatted}}, attendee: {{item.fullname}}, email: {{item.email}}</span>
         </div>
     {% endfor %}
     

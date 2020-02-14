@@ -14,13 +14,14 @@ module.exports = (app, route) => {
         res.render(name, routeUtils.getViewData(req, {}))
       }
 
-      client.request(getBookingsQuery(eventId)).then(_bookingsData => {
-        const bookingsData = _bookingsData.bookings
+      client.request(getBookingsQuery(eventId)).then(data => {
+        const bookingsData = data.bookings
+        const eventData = data.events_by_pk
         req.session.bookingsData = bookingsData
         bookingsData.forEach(x => {
           x.datetime_formatted = new Date(x.datetime).toLocaleString()
         })
-        res.render(name, routeUtils.getViewData(req, { bookingsData: bookingsData }))
+        res.render(name, routeUtils.getViewData(req, { bookingsData: bookingsData, eventData: eventData }))
       })
 
     })
