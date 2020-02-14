@@ -44,6 +44,19 @@ const addBookingMutation = (obj) => {
   `;
 }
 
+const getBookingsQuery = (eventId) => {
+  return `query MyQuery {
+  __typename
+  bookings(where: {event_id: {_eq: ${eventId}}}) {
+    booking_id
+    datetime
+    email
+    event_id
+    fullname
+  }
+}`;
+}
+
   const client = new GraphQLClient(process.env.HASURA_ENDPOINT, {
     headers: {
       "x-hasura-admin-secret": process.env.HASURA_SECRET,
@@ -99,4 +112,5 @@ module.exports = {
     getEventsQuery: getEventsQuery,
     getEventsQuery2: getEventsQuery2,
     addBooking: addBooking,
+    getBookingsQuery: getBookingsQuery,
   }

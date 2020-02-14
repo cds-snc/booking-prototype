@@ -1,0 +1,12 @@
+{% extends "base-logged-in.njk" %}
+
+{% block morecontent %}
+
+    <h1>Your Schedule</h1>
+    {% for item in bookingsData %}
+        <div>
+            <span>{{item.datetime_formatted}}, name: {{item.fullname}}, email: {{item.email}}</span>
+        </div>
+    {% endfor %}
+    
+{% endblock %}

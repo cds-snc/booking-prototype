@@ -11,6 +11,7 @@ const routes = [
   { name: 'new-account', path: '/new-account' },
   { name: 'create-event', path: '/create-event' },
   { name: 'get-event', path: '/get-event' },
+  { name: 'schedule', path: '/schedule' },
 ]
 
 const locales = ['en', 'fr']

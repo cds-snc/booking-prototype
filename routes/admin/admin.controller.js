@@ -8,9 +8,15 @@ module.exports = (app, route) => {
     .get(
       checkAuth, 
       (req, res) => {
-        client.request(getEventsQuery(req.session.profile.user_id)).then(eventData => {
-          res.render(name, routeUtils.getViewData(req, {email: req.session.formdata.email, eventData: eventData.events}))
-        })
+        client.request(getEventsQuery(req.session.profile.user_id))
+          .then(eventData => {
+            res.render(
+              name, 
+              routeUtils.getViewData(req, { 
+                email: req.session.formdata.email, 
+                eventData: eventData.events,
+              }))
+          })
       })
     .post(route.applySchema(Schema), route.doRedirect())
 }
