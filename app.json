@@ -20,6 +20,7 @@
     "NOTIFY_API_BASE_URL": {
       "required": true
     },
+  },
   "formation": {},
   "addons": [],
   "buildpacks": [
@@ -27,5 +28,4 @@
       "url": "heroku/nodejs"
     }
   ]
-  }
 }
