@@ -7,6 +7,7 @@ const scriptSrc = [
   '*.herokuapp.com',
   'unpkg.com',
   'dreamy-swirles-5330b3.netlify.com',
+  'deploy-preview-15--dreamy-swirles-5330b3.netlify.com',
 ]
 
 let upgradeInsecureRequests = true
@@ -22,6 +23,6 @@ module.exports = {
   baseUri: ["'none'"],
   fontSrc: ["'self'", 'https://fonts.gstatic.com'],
   imgSrc: ["'self'", 'data:'],
-  styleSrc: ["'self'", 'https://fonts.googleapis.com','unpkg.com', 'dreamy-swirles-5330b3.netlify.com'],
+  styleSrc: ["'self'", 'https://fonts.googleapis.com','unpkg.com', 'dreamy-swirles-5330b3.netlify.com', 'deploy-preview-15--dreamy-swirles-5330b3.netlify.com'],
   upgradeInsecureRequests,
 }
