@@ -11,6 +11,15 @@
     "SALT_ROUNDS": {
       "required": true
     },
+    "ATTENDEE_CONFIRMATION_EMAIL_ID": {
+      "required": true
+    },
+    "NOTIFY_API_KEY": {
+      "required": true
+    },
+    "NOTIFY_API_BASE_URL": {
+      "required": true
+    },
   "formation": {},
   "addons": [],
   "buildpacks": [
@@ -18,4 +27,5 @@
       "url": "heroku/nodejs"
     }
   ]
+  }
 }
