@@ -24,5 +24,12 @@ test('Can send post request book-1 route ', async () => {
   const csrfToken = extractCsrfToken(getresp);
 
   const postresp = await testSession.post(route.path.en).send({ _csrf: csrfToken });
-  expect(postresp.statusCode).toBe(302); // should redirect back with errors on an incomplete form
+  expect(postresp.statusCode).toBe(302);
+})
+
+test('It loads event data when given a valid event id', async() => {
+  const route = app.routes.get('book-1')
+  const response = await request(app).get(route.path.en + "?id=1")
+  expect(response.statusCode).toBe(200)
+  // can't actually really test this yet since the page doesn't behave any differently if the id doesn't exist
 })

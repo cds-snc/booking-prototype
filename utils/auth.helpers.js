@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt')
 const { GraphQLClient } = require('graphql-request')
+const jsonDB = require("../db/db.json")
 
 const queryEmail = (email) => {
   return `{
@@ -32,19 +33,18 @@ const login = (req, res, next) => {
 
   if (process.env.NODE_ENV === "test") {
     // mock login for local testing
-    const testUser = {
-      email: "test@user.com",
-      password: "CorrectPassword",
-    }
-    if (email === testUser.email && password === testUser.password) {
+    const testUser = jsonDB.users.filter((user) => {
+        return user.email === email && user.password === password
+      })
+    if (testUser.length === 1) {
       req.session.token = true
       req.session.profile = {
-        user_id: 1,
-        fullname: "Test User",
-        email: email,
+        user_id: testUser.user_id,
+        fullname: testUser.fullname,
+        email: testUser.email,
       }
-      next()
     }
+    next()
   } else {
     client.request(queryEmail(email)).then(data => {
       data.users.forEach(x => {

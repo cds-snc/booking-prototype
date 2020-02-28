@@ -18,15 +18,15 @@ module.exports = (app, route) => {
         return
       }
       
-      /* if (process.env.NODE_ENV === "test") {
+      if (process.env.NODE_ENV === "test") {
         const eventData = jsonDB.events.filter((evt) => {
-          return evt.eventId == eventId
+          return evt.eventId === eventId
         })
         req.session.eventData = eventData
         res.render(name, routeUtils.getViewData(req, { eventData: eventData, jsFiles: js ? [js] : false }))
         return;
-      } */
-      
+      }
+  
       client.request(getEventsQuery2(eventId)).then(_eventData => {
         const eventData = _eventData.events[0]
         req.session.eventData = eventData
