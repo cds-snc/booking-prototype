@@ -4,6 +4,6 @@ const app = require('../../app.js')
 
 test('Can send get request get-event route with params', async () => {
   const route = app.routes.get('get-event')
-  const response = await request(app).get(route.path.en + "?eventId=1")
+  const response = await request(app).get(route.path.en + "?eventId=10")
   expect(response.statusCode).toBe(200)
 })
