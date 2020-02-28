@@ -1,7 +1,7 @@
 const { routeUtils } = require('./../../utils')
 
 const saveData = (req, res, next) => {
-  console.log("req.session.formdata", req.session.formdata)
+  //console.log("req.session.formdata", req.session.formdata)
   // save to db
 
   next()
