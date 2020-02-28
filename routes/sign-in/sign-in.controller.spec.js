@@ -40,7 +40,7 @@ test('Can login', async () => {
     .send({ 
       _csrf: csrfToken,
       email: 'test@user.com',
-      password: 'CorrectPassword'
+      password: 'CorrectPassword',
     });
   expect(postresp.statusCode).toBe(302);
   expect(postresp.headers.location).toBe('admin');

@@ -1,8 +1,6 @@
 const request = require('supertest')
 const app = require('../../app.js')
-const cheerio = require('cheerio')
-
-const session = require('supertest-session');
+// const cheerio = require('cheerio')
 
 test('Can send get request get-event route with params', async () => {
   const route = app.routes.get('get-event')

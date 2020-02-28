@@ -32,13 +32,13 @@ describe('for authenticated /create-event', () => {
       .send({ 
         _csrf: csrfToken,
         email: 'test@user.com',
-        password: 'CorrectPassword'
+        password: 'CorrectPassword',
       });
     expect(postresp.statusCode).toBe(302);
   })
 
   test('Can send get request create-event route ', async () => {
-    //console.log(authSession)
+    // console.log(authSession)
     const response = await authSession.get(route.path.en)
     expect(response.statusCode).toBe(200)
   })

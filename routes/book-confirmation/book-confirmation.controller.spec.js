@@ -1,13 +1,13 @@
 const request = require('supertest')
 const app = require('../../app.js')
-const cheerio = require('cheerio')
+// const cheerio = require('cheerio')
 
-const session = require('supertest-session');
+/* const session = require('supertest-session');
 
 function extractCsrfToken(res) {
   var $ = cheerio.load(res.text);
   return $('[name=_csrf]').val();
-}
+} */
 
 test('Can send get request book-confirmation route ', async () => {
   const route = app.routes.get('book-confirmation')

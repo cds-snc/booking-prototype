@@ -32,16 +32,16 @@ const login = (req, res, next) => {
 
   if (process.env.NODE_ENV === "test") {
     // mock login for local testing
-    let testUser = {
+    const testUser = {
       email: "test@user.com",
-      password: "CorrectPassword"
+      password: "CorrectPassword",
     }
     if (email === testUser.email && password === testUser.password) {
       req.session.token = true
       req.session.profile = {
         user_id: 1,
         fullname: "Test User",
-        email: email
+        email: email,
       }
       next()
     }

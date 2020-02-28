@@ -32,13 +32,12 @@ describe('for authenticated /schedule', () => {
       .send({ 
         _csrf: csrfToken,
         email: 'test@user.com',
-        password: 'CorrectPassword'
+        password: 'CorrectPassword',
       });
     expect(postresp.statusCode).toBe(302);
   })
 
   test('Can send get request schedule route ', async () => {
-    //console.log(authSession)
     const response = await authSession.get(route.path.en)
     expect(response.statusCode).toBe(200)
   })
