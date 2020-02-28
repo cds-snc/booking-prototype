@@ -62,13 +62,14 @@ const setSchedulerOptions = (eventData) => {
         firstDay = new Date(firstDay.getTime() + oneDay)
       }
       const lastAvailableDate = dayjs(today).add(daterange_days, "days");
+      const time_values = populateTimes(start_hour, end_hour, duration_minutes);
       return {
         today: dayjs(today),
         firstAvailableDate: dayjs(firstDay),
         lastAvailableDate: lastAvailableDate,
         date: dayjs(firstDay).format("YYYY-MM-DD"),
-        time: "",
-        time_values: populateTimes(start_hour, end_hour, duration_minutes),
+        time: time_values[0].val,
+        time_values: time_values,
         isBlockedDay: isBlockedDay,
         selected: [dayjs(firstDay).format("YYYY-MM-DD")],
         focusedDayNum: dayjs(firstDay).format("D"),
