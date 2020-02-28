@@ -52,7 +52,7 @@ const populateTimes = (startHour, endHour, durationMinutes) => {
 const setSchedulerOptions = (eventData) => {
   window.schedulerOptions = {
     init: data => {
-      const { dayjs, defaultState } = data;
+      const { dayjs } = data;
       const { start_hour, end_hour, duration_minutes, daterange_days } = eventData
       const today = new Date()
       let firstDay = new Date()

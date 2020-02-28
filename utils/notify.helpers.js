@@ -1,6 +1,6 @@
 const NotifyClient = require("notifications-node-client").NotifyClient;
 
-if(!process.env.NOTIFY_API_KEY || !process.env.NOTIFY_API_BASE_URL){
+if((!process.env.NOTIFY_API_KEY || !process.env.NOTIFY_API_BASE_URL) && process.env.NODE_ENV !=="test"){
   throw new Error("MISSING NOTIFY_API_KEY or NOTIFY_API_BASE_URL for NotifyClient")
 }
 
