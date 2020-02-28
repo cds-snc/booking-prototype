@@ -1,7 +1,7 @@
 const { routeUtils, getEventsQuery2, client, getClientJs } = require('./../../utils')
 
 const doAnotherThing = (req, res, next) => {
-  console.log("req.session", req.session)
+  // console.log("req.session", req.session)
   next()
 }
 module.exports = (app, route) => {

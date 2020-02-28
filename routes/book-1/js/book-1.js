@@ -70,7 +70,7 @@ const setSchedulerOptions = (eventData) => {
         firstAvailableDate: dayjs(firstDay),
         lastAvailableDate: lastAvailableDate,
         date: dayjs(firstDay).format("YYYY-MM-DD"),
-        time: time_values[0],
+        time: time_values[0].val,
         time_values: time_values,
         isBlockedDay: isBlockedDay,
         selected: [dayjs(firstDay).format("YYYY-MM-DD")],
