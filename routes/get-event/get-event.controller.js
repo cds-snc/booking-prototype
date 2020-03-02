@@ -11,7 +11,8 @@ module.exports = (app, route) => {
         client.request(getEventsQuery2(eventId)).then(data => {
           res.json(data)
         })
+      } else {
+        res.json({})
       }
-      res.json({})
     })
 }
