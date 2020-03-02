@@ -7,10 +7,11 @@ module.exports = (app, route) => {
       let eventId
       if(req.query.eventId) {
         eventId = req.query.eventId
-      }
-      // do the query
-      client.request(getEventsQuery2(eventId)).then(data => {
-        res.json(data)
+        // do the query
+        client.request(getEventsQuery2(eventId)).then(data => {
+          res.json(data)
         })
+      }
+      res.json({})
     })
 }
