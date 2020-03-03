@@ -1,13 +1,7 @@
 const request = require('supertest')
 const app = require('../../app.js')
-const cheerio = require('cheerio')
-
 const session = require('supertest-session');
-
-function extractCsrfToken(res) {
-  var $ = cheerio.load(res.text);
-  return $('[name=_csrf]').val();
-}
+const { extractCsrfToken } = require('../../utils/testUtils.spec')
 
 test('It redirects to the login screen if user is not logged in', async () => {
   const route = app.routes.get('create-event')

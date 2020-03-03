@@ -39,7 +39,7 @@ const login = (req, res, next) => {
     if (testUser.length === 1) {
       req.session.token = true
       req.session.profile = {
-        user_id: testUser.user_id,
+        user_id: testUser[0].user_id,
         fullname: testUser.fullname,
         email: testUser.email,
       }
