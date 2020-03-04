@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt')
 const { GraphQLClient } = require('graphql-request')
+const jsonDB = require("../db/db.json")
 
 const queryEmail = (email) => {
   return `{
@@ -29,19 +30,36 @@ const client = new GraphQLClient(process.env.HASURA_ENDPOINT, {
 
 const login = (req, res, next) => {
   const { email, password } = req.session.formdata
-  client.request(queryEmail(email)).then(data => {
-    data.users.forEach(x => {
-      if (email === x.email && bcrypt.compareSync(password, x.password)) {
-        req.session.token = true
-        req.session.profile = { 
-          user_id: x.user_id, 
-          fullname: x.fullname,
-          email: x.email,
-        }
+
+  if (process.env.NODE_ENV === "test") {
+    // mock login for local testing
+    const testUser = jsonDB.users.filter((user) => {
+        return user.email === email && user.password === password
+      })
+    if (testUser.length === 1) {
+      req.session.token = true
+      req.session.profile = {
+        user_id: testUser[0].user_id,
+        fullname: testUser.fullname,
+        email: testUser.email,
       }
-    })
+    }
     next()
-  })
+  } else {
+    client.request(queryEmail(email)).then(data => {
+      data.users.forEach(x => {
+        if (email === x.email && bcrypt.compareSync(password, x.password)) {
+          req.session.token = true
+          req.session.profile = { 
+            user_id: x.user_id, 
+            fullname: x.fullname,
+            email: x.email,
+          }
+        }
+      })
+      next()
+    })
+  }
 };
 
 const addUser = (req, res, next) => {
@@ -54,7 +72,7 @@ const addUser = (req, res, next) => {
 
 const checkAuth = (req, res, next) => {
     if (!req.session.token) {
-        return res.redirect(res.locals.route.get("sign-in").url(req.locale))
+      return res.redirect(res.locals.route.get("sign-in").url(req.locale))
     }
     next()
 }

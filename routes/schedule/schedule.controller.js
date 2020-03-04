@@ -12,6 +12,7 @@ module.exports = (app, route) => {
 
       if (!eventId) {
         res.render(name, routeUtils.getViewData(req, {}))
+        return
       }
 
       client.request(getBookingsQuery(eventId)).then(data => {

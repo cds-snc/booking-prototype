@@ -1,7 +1,7 @@
 const { routeUtils, getEventsQuery2, client, getClientJs } = require('./../../utils')
+const jsonDB = require('../../db/db.json')
 
 const doAnotherThing = (req, res, next) => {
-  console.log("req.session", req.session)
   next()
 }
 module.exports = (app, route) => {
@@ -15,7 +15,18 @@ module.exports = (app, route) => {
 
       if (!eventId) {
         res.render(name, routeUtils.getViewData(req, {}))
+        return
       }
+      
+      if (process.env.NODE_ENV === "test") {
+        const eventData = jsonDB.events.filter((evt) => {
+          return evt.eventId === eventId
+        })
+        req.session.eventData = eventData
+        res.render(name, routeUtils.getViewData(req, { eventData: eventData, jsFiles: js ? [js] : false }))
+        return;
+      }
+  
       client.request(getEventsQuery2(eventId)).then(_eventData => {
         const eventData = _eventData.events[0]
         req.session.eventData = eventData
